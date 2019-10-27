@@ -1,0 +1,40 @@
+---
+title: "ridgereg"
+author: "Brahmantio, B. B. & van Doorn, J."
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{bonuslabgroup8}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(bonuslabgroup8)
+library(caret)
+library(mlbench)
+```
+## Introduction
+This vignette showcases how to do a simple prediction using the `ridgereg()` function. This example uses data from the *BostonHousing* dataset.
+
+```{r}
+data("BostonHousing")
+```
+
+### Data
+The data is split into a training and test set using the caret package, with 80% of the data in the training set and 20% of the data in the test set.
+
+```{r}
+set.seed(3456)
+#trainIndex <- createDataPartition(BostonHousing, p = 0.8, list = FALSE, times = 1)
+#bhTrain <- BostonHousing[trainIndex,]
+#bhTest <- BostonHousing[-trainIndex,]
+```
+

@@ -15,5 +15,7 @@ Suggests:
     dplyr,
     nycflights13,
     ggplot2,
-    maps
+    maps,
+    caret,
+    mlbench
 VignetteBuilder: knitr
