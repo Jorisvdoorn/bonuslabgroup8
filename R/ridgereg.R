@@ -67,7 +67,7 @@ ridgereg = setRefClass(Class = "ridgereg",
                            beta_vector = as.vector(beta_hat)
                            names(beta_vector) = rownames(beta_hat)
                            cat("Call:\n")
-                           cat(paste("linreg(formula = ", formula_name, ", data = ",data_name,")", sep = ""),"\n\n")
+                           cat(paste("ridgereg(formula = ", formula_name, ", data = ",data_name,")", sep = ""),"\n\n")
                            cat("Coefficients:\n")
                            print_inside(beta_vector)
                          }
