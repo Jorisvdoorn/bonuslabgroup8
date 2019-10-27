@@ -21,8 +21,17 @@ library(bonuslabgroup8)
 library(caret)
 library(mlbench)
 ```
+## Simple Prediction using ridgereg()
+This vignette showcases how to do a simple prediction using the `ridgereg()` function.
+```{r}
+reg1 = ridgereg(Petal.Length~Species, data = iris, lambda = 0.01)
+reg1$print()
+head(reg1$predict())
+
+```
+
 ## Introduction
-This vignette showcases how to do a simple prediction using the `ridgereg()` function. This example uses data from the *BostonHousing* dataset.
+This example uses data from the *BostonHousing* dataset.
 
 ```{r}
 data("BostonHousing")
