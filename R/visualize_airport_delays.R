@@ -11,7 +11,6 @@
 #' @import maps
 #' 
 #' @export visualize_airport_delays
-
 visualize_airport_delays = function(){
   
   delay_mean = flights %>%
@@ -40,7 +39,3 @@ visualize_airport_delays = function(){
   return(plot_map)
 }
 
-#library(dplyr)
-#library(nycflights13)
-#library(ggplot2)
-#library(maps)
