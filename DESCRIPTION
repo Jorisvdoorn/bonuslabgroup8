@@ -7,3 +7,7 @@ Author: c(person("Bayu Beta", "Brahmantio", email = "bayubrahmantio@gmail.com", 
 Maintainer: Bayu Beta Brahmantio, <bayubrahmantio@gmail.com>
 Description: This package contains two functions. The first is an alternative to the linear regression package, this functions is called ridgereg and returns an object with the results of a Ridge regression. The second is a visualisation of mean delay of flights for different airports by longitude and latitude.
 License: CC0
+Suggests: 
+    knitr,
+    rmarkdown
+VignetteBuilder: knitr

@@ -1,3 +1,19 @@
+#' Ridge Regression
+#' 
+#' Running a Ridge Reregression Model.
+#' 
+#' @param formula Takes a formula of the form Y~X.
+#' @param data Takes a dataset in the form of a data.frame.
+#' @param lambda Is the constraint on the parameters.
+#' 
+#' @return Returns an object of the class 'ridgereg'. This object can be manipulated.
+#' 
+#' @import methods
+#' @import ggplot2
+#' @import gridExtra
+#' 
+#' @export ridgereg
+#' @exportClass ridgereg
 ridgereg = setRefClass(Class = "ridgereg",
                        
                        fields = list(

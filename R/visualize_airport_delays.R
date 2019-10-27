@@ -1,7 +1,16 @@
-library(dplyr)
-library(nycflights13)
-library(ggplot2)
-library(maps)
+#' Visualize Airport Delays
+#' 
+#' This function plots the Mean Delay Time of Flights in USA Airports.
+#' The function does not take any parameters.
+#' 
+#' @return The function returns a graph.
+#' 
+#' @import dplyr
+#' @import ggplot2
+#' @import nycflights13
+#' @import maps
+#' 
+#' @export visualize_airport_delays
 
 visualize_airport_delays = function(){
   
@@ -30,3 +39,8 @@ visualize_airport_delays = function(){
   
   return(plot_map)
 }
+
+#library(dplyr)
+#library(nycflights13)
+#library(ggplot2)
+#library(maps)
