@@ -30,7 +30,7 @@ head(reg1$predict())
 
 ```
 
-## Introduction
+## Create predictive models
 This example uses data from the *BostonHousing* dataset.
 
 ```{r}
@@ -42,8 +42,61 @@ The data is split into a training and test set using the caret package, with 80%
 
 ```{r}
 set.seed(3456)
-#trainIndex <- createDataPartition(BostonHousing, p = 0.8, list = FALSE, times = 1)
-#bhTrain <- BostonHousing[trainIndex,]
-#bhTest <- BostonHousing[-trainIndex,]
+trainIndex <- createDataPartition(BostonHousing$medv, p = 0.8, list = FALSE, times = 1)
+bhTrain <- BostonHousing[trainIndex,]
+bhTest <- BostonHousing[-trainIndex,]
 ```
 
+## Fit Linear regression and linear regression with forward selection
+```{r}
+lmFit = train(medv ~ ., data = bhTrain, method = "lm")
+lmFit
+
+lfFit = train(medv ~ ., data = bhTrain, method = "leapForward")
+lfFit
+```
+By looking at the metrics (RMSE, Rsquared, and MAE), we can see that the linear regression performs better than the linear regression with forward selection.
+
+## Fit a ridge regression model
+```{r, eval=FALSE}
+rr_create = function(){
+  rr = list(type = "Regression", library = "bonuslabgroup8", loop = NULL, prob = NULL)
+  prm = data.frame(parameter = "lambda", class = "numeric", label = "Lambda")
+  rr$parameters = prm
+  rrgrid = function(x, y, len = NULL, search = "grid"){
+    data.frame(lambda = c(0.5, 0.1, 0.05, 0.01, 0.005, 0.001))
+  }
+  rr$grid = rrgrid
+  rrfit <- function(x, y, wts, param, lev, last, weights, classProbs, ...) { 
+    df = as.data.frame(x)
+    df$resp = y
+    ridgereg(formula = resp ~ ., data = df, lambda = param$lambda, ...)
+  }
+  rr$fit = rrfit
+  rrpred <- function(modelFit, newdata, preProc = NULL, submodels = NULL){
+    modelFit$predict(newdata)
+  }
+  rr$predict <- rrpred
+  rrsort <- function(x) x[order(x$lambda),]
+  rr$sort <- rrsort
+  rr$levels <- function(x) x@levels
+  return(rr)
+}
+
+rr_method = rr_create()
+
+set.seed(998)
+fitControl <- trainControl(method = "repeatedcv",
+                           number = 10,
+                           repeats = 10)
+
+set.seed(825)
+ridgeFit <- train(medv ~.,
+                  data = bhTrain,
+                  method = rr_method,
+                  trControl = fitControl
+                     )
+
+
+# keep getting errors: predictions failed for ... Error in modelFit$predict(newdata) : unused argument (newdata)
+```

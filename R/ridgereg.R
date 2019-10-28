@@ -70,6 +70,12 @@ ridgereg = setRefClass(Class = "ridgereg",
                            cat(paste("ridgereg(formula = ", formula_name, ", data = ",data_name,")", sep = ""),"\n\n")
                            cat("Coefficients:\n")
                            print_inside(beta_vector)
+                         },
+                         
+                         predict = function(newdata){
+                           newdata = as.data.frame(newdata)
+                           X = scale(model.matrix(formula, data = newdata)[,-1])
+                           return(X %*% beta_hat)
                          }
                        ))
 
