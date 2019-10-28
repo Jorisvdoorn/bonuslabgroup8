@@ -20,6 +20,7 @@ knitr::opts_chunk$set(
 library(bonuslabgroup8)
 library(caret)
 library(mlbench)
+library(leaps)
 ```
 ## Simple Prediction using ridgereg()
 This vignette showcases how to do a simple prediction using the `ridgereg()` function.
@@ -49,10 +50,12 @@ bhTest <- BostonHousing[-trainIndex,]
 
 ## Fit Linear regression and linear regression with forward selection
 ```{r}
-lmFit = train(medv ~ ., data = bhTrain, method = "lm")
+lmFit = caret::train(medv ~ ., data = bhTrain, method = "lm")
 lmFit
+```
 
-lfFit = train(medv ~ ., data = bhTrain, method = "leapForward")
+```{r}
+lfFit = caret::train(medv ~ ., data = bhTrain, method = "leapForward")
 lfFit
 ```
 By looking at the metrics (RMSE, Rsquared, and MAE), we can see that the linear regression performs better than the linear regression with forward selection.

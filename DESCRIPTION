@@ -15,7 +15,8 @@ Imports:
     maps,
     caret,
     mlbench,
-    MASS
+    MASS,
+    leaps
 Suggests: 
     knitr,
     rmarkdown,
